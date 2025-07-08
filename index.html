@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pannellum 360 Tour</title>
+
+    <!-- Link ke CSS lokal Pannellum -->
+    <!-- <link rel="stylesheet" href="pannellum-2.5.6/src/css/pannellum.css"> -->
+    <!-- Link ke JS lokal Pannellum -->
+    <!-- <script src="pannellum-2.5.6/src/js/pannellum.js"></script> -->
+
+    <!-- Load script Pannellum dari CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #pannellum-image-360 {
+            width: 100%;
+            height: 1000px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="pannellum-image-360"></div>
+
+    <script>
+        pannellum.viewer('pannellum-image-360', {
+            default: {
+                firstScene: 'panorama1',  // Scene pertama yang akan ditampilkan
+                sceneFadeDuration: 1000  // Durasi transisi scene dalam milidetik
+            },
+            scenes: {
+                panorama1: {
+                    title: 'Panorama 1',
+                    panorama: 'assets/photo1.jpg',  // Gambar panorama pertama
+                    hfov: 100,  // Horizontal Field of View (zoom level)
+                    pitch: 0,   // Posisi vertikal kamera
+                    yaw: 0,     // Posisi horizontal kamera
+                    hotSpots: [
+                        {
+                            pitch: 10,  // Posisi vertikal hotspot
+                            yaw: 0,     // Posisi horizontal hotspot
+                            type: 'scene',  // Jenis hotspot
+                            sceneId: 'panorama2',  // Scene yang dituju saat hotspot diklik
+                            text: 'Lihat panorama 2'  // Teks yang muncul di hotspot
+                        }
+                    ]
+                },
+                panorama2: {
+                    title: 'Panorama 2',
+                    panorama: 'assets/photo2.jpg',  // Gambar panorama kedua
+                    hfov: 100,
+                    pitch: 0,
+                    yaw: 0,
+                    hotSpots: [
+                        {
+                            pitch: -10,
+                            yaw: 0,
+                            type: 'scene',
+                            sceneId: 'panorama1',
+                            text: 'Kembali ke panorama 1'
+                        }
+                    ]
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
